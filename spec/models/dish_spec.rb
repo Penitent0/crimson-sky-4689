@@ -27,6 +27,7 @@ RSpec.describe Dish, type: :model do
 
     it '#total_calories' do
       expect(@dish_1.total_calories).to eq(3000)
+      expect(@dish_2.total_calories).to eq(1500)
     end
   end
 end

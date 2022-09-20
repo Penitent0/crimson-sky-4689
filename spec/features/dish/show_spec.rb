@@ -87,6 +87,12 @@ RSpec.describe 'Dish Show Page' do
       within "#dish-total-calories" do
         expect(page).to have_content(@dish_1.total_calories)
       end
+
+      visit dish_path(@dish_2)
+
+      within "#dish-total-calories" do
+        expect(page).to have_content(@dish_2.total_calories)
+      end
     end
   end
 end

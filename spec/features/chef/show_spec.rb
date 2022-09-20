@@ -49,7 +49,7 @@ RSpec.describe 'Chef Show Page' do
 
     it 'When I click on ingredients link Im taken to a chefs ingredient index page' do
       visit chef_path(@chef_1)
-      save_and_open_page
+
       click_on "#{@chef_1.name} Ingredient List"
 
       expect(current_path).to eq(chef_ingredients_path(@chef_1))
@@ -62,7 +62,7 @@ RSpec.describe 'Chef Show Page' do
     end
 
     it 'and I can see a unique list of names of all the ingredients that this chef uses.' do
-
+      
     end
   end
 end

@@ -53,7 +53,7 @@ RSpec.describe 'Chef Show Page' do
       click_on "#{@chef_1.name} Ingredient List"
 
       expect(current_path).to eq(chef_ingredients_path(@chef_1))
-
+      
       visit chef_path(@chef_2)
 
       click_on "#{@chef_2.name} Ingredient List"
@@ -62,7 +62,7 @@ RSpec.describe 'Chef Show Page' do
     end
 
     it 'and I can see a unique list of names of all the ingredients that this chef uses.' do
-      chef_ingredients_path(@chef_1)
+      visit chef_ingredients_path(@chef_1)
 
       within "#chef-ingredients" do
         expect(page).to have_content(@ingredient_1.name)
@@ -75,7 +75,7 @@ RSpec.describe 'Chef Show Page' do
         expect(page).to_not have_content(@ingredient_8.name)
       end
 
-      chef_ingredients_path(@chef_1)
+      visit chef_ingredients_path(@chef_1)
 
       within "#chef-ingredients" do
       expect(page).to have_content(@ingredient_5.name)

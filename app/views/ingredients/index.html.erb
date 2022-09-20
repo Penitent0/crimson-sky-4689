@@ -1,5 +1,7 @@
-<h2><%= "#{@chef}" %> Ingredient List</h2>
+<h2><%= "#{@chef.name}" %> Ingredient List</h2>
 
 <div id="chef-ingredients">
-  
+  <% @chef.ingredient_list.each do |ingredient| %>
+    <p><%= ingredient.name  %></p>
+  <% end %>
 </div>

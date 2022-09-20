@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Chef Show Page' do
   before :each do
     @chef_1 = Chef.create!(name: "Chef Boyardee")
-    @chef_2 = Chef.create!(name: "Little Debbie")
+    @chef_2 = Chef.create!(name: "Betty Crocker")
 
     @dish_1 = @chef_1.dishes.create!(name: "Raviolis", description: "Cheap pasta in ketchup sauce")
     @dish_2 = @chef_1.dishes.create!(name: "Lasagna", description: "Cardboard noodles with sawdust sprinkles")
@@ -35,14 +35,30 @@ RSpec.describe 'Chef Show Page' do
   describe 'User Story 3 - When I visit a chefs show page' do
     it 'I see the name of that chef' do
       visit chef_path(@chef_1)
+
+      within "#chef-info" do
+        expect(page).to have_content(@chef_1.name)
+      end
+
+      visit chef_path(@chef_2)
+
+      within "#chef-info" do
+        expect(page).to have_content(@chef_2.name)
+      end
     end
 
-    it 'And I see a link to view a list of all ingredients that this chef uses in their dishes' do
+    it 'When I click on ingredients link Im taken to a chefs ingredient index page' do
+      visit chef_path(@chef_1)
+      save_and_open_page
+      click_on "#{@chef_1.name} Ingredient List"
 
-    end
+      expect(current_path).to eq(chef_ingredients_path(@chef_1))
 
-    it 'When I click on that link Im taken to a chefs ingredient index page' do
+      visit chef_path(@chef_2)
 
+      click_on "#{@chef_2.name} Ingredient List"
+  
+      expect(current_path).to eq(chef_ingredients_path(@chef_2))
     end
 
     it 'and I can see a unique list of names of all the ingredients that this chef uses.' do

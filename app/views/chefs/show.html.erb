@@ -1,0 +1,7 @@
+<h2><%= "#{@chef.name}" %> Show Page</h2>
+
+<div id="chef-info">
+  <%= @chef.name  %>
+</div>
+<br>
+<%= link_to "#{@chef.name} Ingredient List", chef_ingredients_path(@chef) %>
